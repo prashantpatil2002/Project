@@ -3,7 +3,7 @@
      
 
 <head>
-    <title>SAMPARK-img to audio</title>
+    <title>SAINIC-img to audio</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -13,27 +13,45 @@
     
 </head>
 
-<body style="padding: 50PX 50PX 50PX 50PX; background-color: rgba(4, 4, 43, 0.646);" >
-    <div style="  background-image: url(https://www.market-prospects.com//storage/images/602_1200x675.jpg); display: block ;padding-top: 50; height: 600px;width: 900px;margin-left: 20%;padding-left: 0; MARGIN-top: 120px;margin-bottom: 90PX;" >
-    <div style="background-color: rgba(0, 0, 0, 0.379);color: rgb(255, 255, 255);justify-content: center;text-align: center;">
+<body  >
+    <video autoplay muted loop src="./111.mp4" style="object-fit: cover;
+    position: absolute;
+    width: 100%;
+    height: 150%;
+    position: absolute;
+    z-index: 1;"></video>
+       <video autoplay muted loop src="111.mp4" style="object-fit: cover;
+    position: absolute;
+    width: 100%;
+    height: 150%;
+    position: absolute;
+    z-index: 1;"></video>
+     
+ <div style="position: absolute;
+ top: 0;
+ left: 0;
+ bottom: 0;
+ right: 0;
+ z-index: 2;
+ background: rgba(0,0,0,0.6);" >  
+      <div style="background-color: black;color: rgb(255, 255, 255);justify-content: center;text-align: center;">
+
         <h2>KARAN PL INNOVATION PROJECT</h2>
-        <h1>SAMPARK</h1>
+        <h1>SAINIC</h1>
         <P>SOUND IMAGE INTERCONVERTOR</P>
 
-    </div>
-    <div>
-        
-    </div>
-    <div id="container" style=" align-items: center; padding-left: 25%; width: 60%;">
-            <div class="row"  style="  padding-top: 40px;">
+        </div>
+    
+      <div id="container">
+            <div class="row">
                 <span id="imgNameLabel" class="invisible"></span>
-                <button style="background-color: rgba(0, 0, 0, 0.374);color: white;" id="openButton"  class="action-button" type="button" name="button">OPEN IMAGE</button>
+                <button style="background-color: black;color: white;" id="openButton"  class="action-button" type="button" name="button">OPEN IMAGE</button>
                 <input id="fileBrowser" type="file" name="name" value="" accept="image/*">
             </div>
-            <div  style="background-color: rgba(0, 0, 0, 0.379);color: white;" id="content" class="invisible">
+            <div  style="background-color: black;color: white;" id="content" class="invisible">
                 <div class="row">
-                    <button style="background-color: rgba(0, 0, 0, 0.388);color: white;" id="previewButton" type="button" name="button">Preview Image</button>
-                    <button style="background-color: rgba(0, 0, 0, 0.377);color: white;" id="settingButton" type="button" name="button">Settings</button>
+                    <button style="background-color: rgb(152, 144, 144);color: white;" id="previewButton" type="button" name="button">Preview Image</button>
+                    <button style="background-color: rgb(88, 83, 83);color: white;" id="settingButton" type="button" name="button">Settings</button>
                 </div>
                 <div class="row">
                     <canvas id="canvas" class="invisible">
@@ -48,7 +66,7 @@
                     <input id="maxFreq" type="number" name="maxFreq" value="20000" />
                 </div>
                 <div class="row">
-                    <button style="background-color: rgba(0, 0, 0, 0.384);color: white;"id="generateButton" class="action-button">Encode</button>
+                    <button style="background-color: rgb(88, 83, 83);color: white;"id="generateButton" class="action-button">Encode</button>
                     <br>
                     <div style="justify-content: center;" id="progressImg" class="invisible">
                         <span>Please Wait...</span>
@@ -56,9 +74,9 @@
                     </div>
                 </div>
             </div>
-        </div>
 
 
+        
             <canvas id="spectrum-canvas" width="800px" height="600px"></canvas>
 
 
@@ -68,15 +86,11 @@
 
 
 
-
-            <script src="./jquery.min.js"></script>
-    <script src="./riffwave.js"></script>
-    <script src="./FileSave.js"></script>
-    <script src="./engine.js"></script>
-            <script src="jquery.min.js"></script>
-    <script src="riffwave.js"></script>
-    <script src="FileSave.js"></script>
-    <script src="engine.js"></script>
+        </div> 
+            <script src="js/jquery.min.js"></script>
+    <script src="js/riffwave.js"></script>
+    <script src="js/FileSave.js"></script>
+    <script src="js/engine.js"></script>
 
     <script type="text/javascript">
 
