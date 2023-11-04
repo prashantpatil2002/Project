@@ -1,142 +1,51 @@
 <!DOCTYPE html>
-<html>
-     
-
+<html lang="en">
 <head>
-    <title>SAINIC-img to audio</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="css/style.css" />
-
-
-    
+	<title>Spectrogram</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body  >
-    <video autoplay muted loop src="./111.mp4" style="object-fit: cover;
-    position: absolute;
-    width: 100%;
-    height: 150%;
-    position: absolute;
-    z-index: 1;"></video>
-       <video autoplay muted loop src="111.mp4" style="object-fit: cover;
-    position: absolute;
-    width: 100%;
-    height: 150%;
-    position: absolute;
-    z-index: 1;"></video>
-     
- <div style="position: absolute;
- top: 0;
- left: 0;
- bottom: 0;
- right: 0;
- z-index: 2;
- background: rgba(0,0,0,0.6);" >  
-      <div style="background-color: black;color: rgb(255, 255, 255);justify-content: center;text-align: center;">
 
-        <h2>KARAN PL INNOVATION PROJECT</h2>
-        <h1>SAINIC</h1>
-        <P>SOUND IMAGE INTERCONVERTOR</P>
+	 
 
-        </div>
-    
-      <div id="container">
-            <div class="row">
-                <span id="imgNameLabel" class="invisible"></span>
-                <button style="background-color: black;color: white;" id="openButton"  class="action-button" type="button" name="button">OPEN IMAGE</button>
-                <input id="fileBrowser" type="file" name="name" value="" accept="image/*">
-            </div>
-            <div  style="background-color: black;color: white;" id="content" class="invisible">
-                <div class="row">
-                    <button style="background-color: rgb(152, 144, 144);color: white;" id="previewButton" type="button" name="button">Preview Image</button>
-                    <button style="background-color: rgb(88, 83, 83);color: white;" id="settingButton" type="button" name="button">Settings</button>
-                </div>
-                <div class="row">
-                    <canvas id="canvas" class="invisible">
-                    </canvas>
-                </div>
-                <div id="moreSettings" class="row invisible">
-                    <label>yFactor:</label>
-                    <input id="yFactor" type="number" name="yFactor" value="2" />
-                    <label>Length (seconds):</label>
-                    <input id="length" type="number" name="length" value="3" />
-                    <label>Max. Frequency (Hz):</label>
-                    <input id="maxFreq" type="number" name="maxFreq" value="20000" />
-                </div>
-                <div class="row">
-                    <button style="background-color: rgb(88, 83, 83);color: white;"id="generateButton" class="action-button">Encode</button>
-                    <br>
-                    <div style="justify-content: center;" id="progressImg" class="invisible">
-                        <span>Please Wait...</span>
-                        <div id="progressImg" class="loader"></div>
-                    </div>
-                </div>
-            </div>
+	<body >
+		<video autoplay muted loop src="../animation_of_glitch_effect_over_multiple_screens_with_data_processing_and_digital_icons (1080p).mp4" style=" object-fit: cover;
+  position: absolute;
+  width: 100%;
+  height: 150%;
+  position: absolute;
+  z-index: 1;"></video>
+  <div style=" 
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 2;
+	background: rgba(0,0,0,0.6);
+  ">
+		<div style="background-color: rgba(0, 0, 0, 0.386);color: rgb(255, 255, 255);justify-content: center;text-align: center; margin-left: 0%;">
 
+			<h2>KARAN PL INNOVATION PROJECT</h2>
+			<h1>SAINIC</h1>
+			<P>SOUND IMAGE INTERCONVERTOR</P>
+			<p>UPLOAD AUDIO FILE HERE</p>
+		
+		</div>
 
-        
-            <canvas id="spectrum-canvas" width="800px" height="600px"></canvas>
+		<div   id="spectrogram" style="background-color: rgba(105, 105, 105, 0.425);justify-content: center;margin-left: 5%;"></div>
+	</div>
+		<script src="jquery.min.js"></script>
+		<script type='text/javascript' src='spectrogram-v12.js'></script>
+		<script>
+		var spectrogram = new Spectrogram({
+			font:"14px Arial",
+			fftsize: Math.pow(2,11),
+			scrollDirection: 1,
+			backgroundColor: "105 105 105",
+			audioFiles: [ ]
+		});
+		</script>
 
-
-   
-
-
-
-
-
-        </div> 
-            <script src="js/jquery.min.js"></script>
-    <script src="js/riffwave.js"></script>
-    <script src="js/FileSave.js"></script>
-    <script src="js/engine.js"></script>
-
-    <script type="text/javascript">
-
-        $(document).ready(function() {
-            var fileLoaded = false;
-            var showPreview = false;
-            var showSettings = false;
-
-            $('#openButton').on('click', function () {
-                $( "#fileBrowser" ).trigger( "click" );
-            });
-
-            $('#fileBrowser').on('change', function() {
-                var filePath = $(this).val();
-                loadCanvas($('#fileBrowser')[0].files[0]);
-                $('#content').toggleClass('invisible');
-                $('#imgNameLabel').toggleClass('invisible');
-                $("#openButton").html('Change Image');
-                $("#imgNameLabel").html(filePath);
-            });
-
-            $('#previewButton').on('click', function () {
-                showPreview = !showPreview;
-                $("#previewButton").html(showPreview ? 'Hide Preview' : 'Preview Image');
-                $('#canvas').toggleClass('invisible');
-            });
-
-            $('#settingButton').on('click', function () {
-                showSettings = !showSettings;
-                $("#settingButton").html(showSettings ? 'Hide Settings' : 'Settings');
-                $('#moreSettings').toggleClass('invisible');
-            });
-
-            $('#generateButton').on('click', function () {
-                $('#progressImg').toggleClass('invisible');
-                setTimeout(function () {
-                    getImageData();
-                    $('#progressImg').toggleClass('invisible');
-                }, 100);
-
-            });
-
-        });
-        
-    </script>
-    </div>
-</body>
-
+	</body>
 </html>
